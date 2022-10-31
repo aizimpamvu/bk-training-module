@@ -24,8 +24,9 @@ trainings_description = ["Ubusobanuro 1 ",
 class Training:
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     driver.get("https://staging.smartkungahara.rw/#/login")
-    def __init__(self):
 
+    # Login into system
+    def __init__(self):
         email = self.driver.find_element(By.XPATH,
                                          '/html/body/app-root/app-login/div/div/div/div[2]/div/div/form/div[1]/input')
 
@@ -38,44 +39,47 @@ class Training:
         time.sleep(3)
         password.send_keys(Keys.ENTER)
         time.sleep(5)
-    def addTraining(self):
+
+    def createTraining(self):
         self.driver.find_element(By.XPATH,
-                            '/html/body/app-root/app-admin/div/app-asidenavbar/aside/section/ul/li[7]/a').click()
+                                 '/html/body/app-root/app-admin/div/app-asidenavbar/aside/section/ul/li[7]/a').click()
         time.sleep(2)
         self.driver.find_element(By.XPATH,
-                            '/html/body/app-root/app-admin/div/app-asidenavbar/aside/section/ul/li[7]/ul/li/a').click()
+                                 '/html/body/app-root/app-admin/div/app-asidenavbar/aside/section/ul/li[7]/ul/li/a').click()
         time.sleep(2)
         # Create training button
         self.driver.find_element(By.XPATH,
-                            '/html/body/app-root/app-admin/div/div/section/app-training-list/h3/div/div[2]/a').click()
+                                 '/html/body/app-root/app-admin/div/div/section/app-training-list/h3/div/div[2]/a').click()
         self.driver.find_element(By.XPATH, '/html/body/app-root/app-admin/div/div/section/app-training-create/form/div['
-                                      '1]/div/div/div/div[1]/div[1]/div/input').send_keys(random.choice(trainings))
+                                           '1]/div/div/div/div[1]/div[1]/div/input').send_keys(random.choice(trainings))
         time.sleep(3)
         self.driver.find_element(By.XPATH, '/html/body/app-root/app-admin/div/div/section/app-training-create/form/div['
-                                      '1]/div/div/div/div[1]/div[2]/div/input').send_keys(
+                                           '1]/div/div/div/div[1]/div[2]/div/input').send_keys(
             random.choice(trainings_description))
         time.sleep(3)
         self.driver.find_element(By.XPATH, '/html/body/app-root/app-admin/div/div/section/app-training-create/form/div['
-                                      '1]/div/div/div/div[2]/div[1]/div/ng-multiselect-dropdown/div/div[1]/span').click()
+                                           '1]/div/div/div/div[2]/div[1]/div/ng-multiselect-dropdown/div/div[1]/span').click()
         time.sleep(3)
         self.driver.find_element(By.XPATH, '/html/body/app-root/app-admin/div/div/section/app-training-create/form/div['
-                                      '1]/div/div/div/div[2]/div[1]/div/ng-multiselect-dropdown/div/div[2]/ul[1]/li/input').send_keys(
+                                           '1]/div/div/div/div[2]/div[1]/div/ng-multiselect-dropdown/div/div[2]/ul[1]/li/input').send_keys(
             "Not Applied")
         time.sleep(3)
         self.driver.find_element(By.XPATH, '/html/body/app-root/app-admin/div/div/section/app-training-create/form/div['
-                                      '1]/div/div/div/div[2]/div[1]/div/ng-multiselect-dropdown/div/div[2]/ul[2]/li['
-                                      '1]/div').click()
+                                           '1]/div/div/div/div[2]/div[1]/div/ng-multiselect-dropdown/div/div[2]/ul[2]/li['
+                                           '1]/div').click()
 
         time.sleep(3)
         self.driver.find_element(By.XPATH,
-                            '/html/body/app-root/app-admin/div/div/section/app-training-create/form/div[2]/button[2]').click()
+                                 '/html/body/app-root/app-admin/div/div/section/app-training-create/form/div[2]/button[2]').click()
         time.sleep(3)
         self.driver.maximize_window()
 
         self.driver.find_element(By.XPATH, '/html/body/ngb-modal-window/div/div/div[3]/div/div[3]/button/span').click()
         print(self.driver.current_url)
         time.sleep(2)
+        self.driver.find_element(By.XPATH, "/html/body/ngb-modal-window/div/div/div/button").click()
+        time.sleep(3)
 
-
-Training()
-
+# Training Object
+training = Training()
+training.createTraining()
