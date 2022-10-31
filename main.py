@@ -22,6 +22,7 @@ driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 
 driver.get("https://staging.smartkungahara.rw/#/login")
 
+
 # Get and set email
 
 email = driver.find_element(By.XPATH, '/html/body/app-root/app-login/div/div/div/div[2]/div/div/form/div[1]/input')
@@ -60,12 +61,10 @@ driver.find_element(By.XPATH, '/html/body/app-root/app-admin/div/div/section/app
                               '1]/div').click()
 
 time.sleep(3)
-add_training = driver.find_element(By.XPATH, "/html/body/app-root/app-admin/div/div/section/app-training-create/form"
-                                             "/div[1]/div/div/div/div[2]/div[1]/div/ng-multiselect-dropdown/div/div["
-                                             "2]/ul[2]/li[1]/div")
+driver.find_element(By.XPATH, '/html/body/app-root/app-admin/div/div/section/app-training-create/form/div[2]/button[2]').click()
 time.sleep(3)
-add_training.send_keys(Keys.ENTER)
-
 driver.maximize_window()
+
+driver.find_element(By.XPATH, '/html/body/ngb-modal-window/div/div/div[3]/div/div[3]/button/span').click()
 print(driver.current_url)
 time.sleep(2)
