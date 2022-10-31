@@ -80,6 +80,7 @@ class Training:
         self.driver.find_element(By.XPATH, "/html/body/ngb-modal-window/div/div/div/button").click()
         time.sleep(3)
 
+
 # Training Object
 training = Training()
 training.createTraining()
